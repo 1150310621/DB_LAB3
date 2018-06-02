@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>welcome</title>
+<link src="stylesheets/bootstrap.min.css">
+<style type="text/css">
+
+	html, body, div, span, object, iframe,
+	h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+	abbr, address, cite, code,
+	del, dfn, em, img, ins, kbd, q, samp,
+	small, strong, sub, sup, var,
+	b, i,
+	dl, dt, dd, ol, ul, li,
+	fieldset, form, label, legend,
+	table, caption, tbody, tfoot, thead, tr, th, td {
+		margin:0;
+		padding:0;
+		border:0;
+		outline:0;
+		font-size:100%;
+		vertical-align:baseline;
+		background:transparent;
+	}
+
+	body {
+		margin:0;
+		padding:0;
+		font:12px/15px "Helvetica Neue",Arial, Helvetica, sans-serif;
+		color: #555;
+		background:#f5f5f5;
+	}
+
+
+	table {
+		overflow:hidden;
+		border:1px solid #d3d3d3;
+		background:#fefefe;
+		width:80%;
+		margin:0 auto;
+		-moz-border-radius:5px; /* FF1+ */
+		-webkit-border-radius:5px; /* Saf3-4 */
+		border-radius:5px;
+		-moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+		-webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+	}
+
+	th, td {padding:18px 28px 18px; text-align:center; }
+
+	th {padding-top:22px; text-shadow: 1px 1px 1px #fff; background:#e8eaeb;}
+
+	td {border-top:1px solid #e0e0e0; border-right:1px solid #e0e0e0;}
+
+	tr.odd-row td {background:#f6f6f6;}
+
+	td.first, th.first {text-align:left}
+
+	td.last {border-right:none;}
+
+
+	td {
+		background: -moz-linear-gradient(100% 25% 90deg, #fefefe, #f9f9f9);
+		background: -webkit-gradient(linear, 0% 0%, 0% 25%, from(#f9f9f9), to(#fefefe));
+	}
+
+	tr.odd-row td {
+		background: -moz-linear-gradient(100% 25% 90deg, #f6f6f6, #f1f1f1);
+		background: -webkit-gradient(linear, 0% 0%, 0% 25%, from(#f1f1f1), to(#f6f6f6));
+	}
+
+	th {
+		background: -moz-linear-gradient(100% 20% 90deg, #e8eaeb, #ededed);
+		background: -webkit-gradient(linear, 0% 0%, 0% 20%, from(#ededed), to(#e8eaeb));
+	}
+
+	tr:first-child th.first {
+		-moz-border-radius-topleft:5px;
+		-webkit-border-top-left-radius:5px; /* Saf3-4 */
+	}
+
+	tr:first-child th.last {
+		-moz-border-radius-topright:5px;
+		-webkit-border-top-right-radius:5px; /* Saf3-4 */
+	}
+
+	tr:last-child td.first {
+		-moz-border-radius-bottomleft:5px;
+		-webkit-border-bottom-left-radius:5px; /* Saf3-4 */
+	}
+
+	tr:last-child td.last {
+		-moz-border-radius-bottomright:5px;
+		-webkit-border-bottom-right-radius:5px; /* Saf3-4 */
+	}
+
+</style>
+
+</head>
+<body>
+
+    <br>
+    <br>
+
+    <div style="float: left;width: 50%" >
+    <div align="center">
+            <label style="font-size:30px;">
+              用户
+            <label>
+    </div>
+    <br>
+    <table id="usertable">
+         <tbody>
+           <tr><th>UID</th><th>NAME</th><th>AGE</th><th>SEX</th><th>BIRTHDAY</th></tr>
+           <% for(var i=0; i<user.length;i++){%>
+           <tr onclick="getuser(<%= user[i].uid %>)">
+               <td><%= user[i].uid %></td>
+               <td><%= user[i].name %></td>
+               <td><%= user[i].age %></td>
+               <td><%= user[i].sex %></td>
+               <td><%= user[i].birthday %></td>
+           </tr>
+           <%}%>
+          </tbody>
+    </table>
+    </div>
+
+    <div style="float: left;width: 50%" >
+    <div align="center">
+            <label style="font-size:30px;">
+              视频
+            <label>
+    </div>
+    <br>
+    <table>
+      <tbody>
+        <tr><th>视频编号</th><th>TITLE</th><th>DESCRIPTION</th></tr>
+        <% for(var i=0; i<video.length;i++){%>
+        <tr onclick="getvideo(<%= video[i].avnum %>)">
+            <td><%= video[i].avnum %></td>
+            <td><%= video[i].title %></td>
+            <td><%= video[i].discription %></td>
+        </tr>
+        <%}%>
+       </tbody>
+    </table>
+    <br>
+    <br>
+    <br>
+        <br>
+        <br>
+            <br>
+            <br>
+                <br>
+                <br>
+                    <br>
+                    <br>
+                        <br>
+    </div>
+
+
+     <br>
+     <br>
+
+    <form align="center">
+       <legend style="font-size:15px;">删除up主</legend>
+       <br>
+       <table>
+         <tr>
+         <td>UID</td>
+         <td><input style="width:100%;height:100%;display:block" type="text" id="deleteuid"></td>
+         </tr>
+         <tr><td><button id="deleteuser" >提交</button></td></tr>
+       </table>
+    </form>
+    <br>
+    <br>
+
+    <form align="center">
+         <legend style="font-size:15px;">视频投稿</legend>
+         <br>
+         <table>
+                  <tr>
+                  <td>UID</td>
+                  <td><input style="width:100%;height:100%;display:block" type="text" id="adduid"></td>
+                  </tr>
+                  <tr>
+                     <td>视频编号</td>
+                     <td><input style="width:100%;height:100%;display:block" type="text" id="addavnum"></td>
+                  </tr>
+                  <tr>
+                    <td>title</td>
+                    <td><input style="width:100%;height:100%;display:block" type="text" id="addtitle"></td>
+                  </tr>
+                  <tr>
+                        <td>description</td>
+                        <td><input style="width:100%;height:100%;display:block" type="text" id="adddes"></td>
+                  </tr>
+                  <tr><td><button id="addvideo" >提交</button></td></tr>
+         </table>
+    </form>
+    <br>
+    <br>
+
+     <form align="center">
+           <legend style="font-size:15px;">查询up主投稿视频标题</legend>
+           <br>
+           <table>
+             <tr>
+             <td>UID</td>
+             <td><input style="width:100%;height:100%;display:block" type="text" id="findlabeluid"></td>
+             </tr>
+             <tr><td><button id="findlabel" >提交</button></td></tr>
+           </table>
+     </form>
+     <br>
+     <br>
+
+     <form align="center">
+                <legend style="font-size:15px;">查询至少投稿n个视频的up主名字</legend>
+                <br>
+                <table>
+                  <tr>
+                  <td>视频数目</td>
+                  <td><input style="width:100%;height:100%;display:block" type="text" id="videonum"></td>
+                  </tr>
+                  <tr><td><button id="group" >提交</button></td></tr>
+                </table>
+     </form>
+     <br>
+     <br>
+
+     <table>
+                         <thead>
+                             <tr>
+                                 <th>title</th>
+                             </tr>
+                         </thead>
+                         <tbody id="title">
+                         </tbody>
+     </table>
+     <br>
+     <br>
+
+     <table>
+                              <thead>
+                                  <tr>
+                                      <th>UP主姓名</th>
+                                  </tr>
+                              </thead>
+                              <tbody id="name">
+                              </tbody>
+     </table>
+     <br>
+     <br>
+
+
+
+    <script src="javascripts/jquery-3.3.1.min.js"></script>
+    <script>
+               var timer = null;
+               function getuser(uid) {
+                  clearTimeout(timer);
+                  if (event.detail == 2)
+                      return ;
+                  timer = setTimeout(function() {
+                      $.ajax({
+                                                    method: "post",
+                                                    url: "userdetail",
+                                                    data: {
+                                                         uid: uid
+                                                    },
+                                                    success: function(data) {
+                                                          var newin=window.open("","","");
+                                                          newin.opener=null;
+                                                          newin.document.write(data);
+                                                          newin.document.close();
+                                                    },
+                                                    error: function() {
+                                                       alert("跳转失败");
+                                                    },
+                               });}
+                      , 300);
+               }
+
+                   $('#usertable').on('dblclick','td',function(){
+                                            clearTimeout(timer);
+                                            var oldVal = $(this).text();
+                                            var uid;
+                                            var column;
+                                            var tr = $(this).parent();
+                                            var td = tr.children("td");
+                                            var uid =td.eq(0).text();
+                                            column=$(this).parents("tr").find("td").index($(this));
+                                            console.log(uid,column);
+                                            var input = "<input type='text' id='tmpId' value='" + oldVal + "' >";
+                                            $(this).text('');
+                                            $(this).append(input);
+                                            $('#tmpId').focus();
+                                            $('#tmpId').blur(function(){
+                                                if($(this).val() != ''&&column!=0){
+                                                   oldVal = $(this).val();
+                                                   $.ajax({
+                                                                                                       method: "post",
+                                                                                                       url: "update",
+                                                                                                       data: {
+                                                                                                            uid: uid,
+                                                                                                            column:column,
+                                                                                                            new:oldVal,
+                                                                                                       },
+                                                                                                       success: function(data) {
+                                                                                                             alert("修改成功");
+                                                                                                       },
+                                                                                                       error: function() {
+                                                                                                          alert("修改失败");
+                                                                                                       },
+                                                                                  });
+                                                }
+                                               $(this).closest('td').text(oldVal);
+                                            });
+                   });
+
+          function getvideo(avnum){
+                              $.ajax({
+                                          method: "post",
+                                          url: "vediodetail",
+                                          data: {
+                                               avnum:avnum
+                                          },
+                                          success: function(data) {
+                                             var newin=window.open("","","");
+                                             newin.opener=null;
+                                             newin.document.write(data);
+                                             newin.document.close();
+                                          },
+                                          error: function() {
+                                             alert("跳转失败");
+                                          },
+                               });
+          }
+
+           $("#deleteuser").click(function(e) {
+                          e.preventDefault();
+                          if($("#deleteuid").val()!=''){
+                          alert("uid为其他表外键,将从数据库删除用户的其他信息如投稿关注等")
+                          $.ajax({
+                              method: "post",
+                              url: "deleteuser",
+                              data: {
+                                  uid:$("#deleteuid").val()
+                              },
+                              success: function(data) {
+                                  if(data=="ok"){
+                                  alert('删除成功');
+                                  location.reload();
+                                  }
+                                  else{
+                                  alert('无此UID用户');
+                                  location.reload();
+                                  }
+                              },
+                              error: function() {
+                                  alert('删除失败');
+                              }
+                          });
+                          }
+                          else{
+                            alert('输入为空');
+                          }
+           });
+
+            $("#addvideo").click(function(e) {
+                                     e.preventDefault();
+                                     var num = document.getElementById('adduid').value;
+                                     if(num)
+                                     {
+                                        if(!isNaN(num)){
+                                        alert("添加有外键，请注意")
+
+
+                                                                                $.ajax({
+                                                                                    method: "post",
+                                                                                    url: "addvideo",
+                                                                                    data: {
+                                                                                        uid:$("#adduid").val(),
+                                                                                        avnum:$("#addavnum").val(),
+                                                                                        title:$("#addtitle").val(),
+                                                                                        des:$("#adddes").val(),
+                                                                                    },
+                                                                                    success: function(data) {
+                                                                                        if(data=="ok"){
+                                                                                          alert('添加成功');
+                                                                                          location.reload();
+                                                                                        }
+                                                                                        else{
+                                                                                          alert('添加失败');
+                                                                                          location.reload();
+                                                                                        }
+                                                                                    },
+                                                                                    error: function() {
+                                                                                        alert('添加失败');
+                                                                                    }
+                                                                                });
+                                        }
+                                        else{
+                                          alert('输入非数字');
+                                        }
+                                     }
+                                     else{
+                                        alert('输入为空');
+                                     }
+            });
+
+             $("#findlabel").click(function(e) {
+                                                 e.preventDefault();
+                                                 var num = document.getElementById('findlabeluid').value;
+                                                 if(num){
+                                                    if(!isNaN(num)){
+                                                      $.ajax({
+                                                                                                           method: "post",
+                                                                                                           url: "findtitle",
+                                                                                                           data: {
+                                                                                                               uid:num
+                                                                                                           },
+                                                                                                           success: function(data) {
+                                                                                                               var str = "";
+                                                                                                               for(var i = 0, l = data.length; i < l; i++) {
+                                                                                                                  str += "<tr><td>";
+                                                                                                                  str += data[i].title;
+                                                                                                                  str += "</td></tr>"
+                                                                                                               }
+                                                                                                               $("#title").html(str);
+                                                                                                           },
+                                                                                                           error: function() {
+                                                                                                               alert('查找失败');
+                                                                                                           }
+                                                                                                       });
+                                                   }
+                                                   else{
+                                                    alert('输入非数字');
+                                                   }
+                                                 }
+                                                 else{
+                                                  alert('输入为空');
+                                                 }
+                                  });
+             $("#group").click(function(e) {
+                                                     e.preventDefault();
+                                                     var num = document.getElementById('videonum').value;
+                                                     if(num){
+                                                        if(!isNaN(num)){
+                                                          $.ajax({
+                                                                                                               method: "post",
+                                                                                                               url: "findname",
+                                                                                                               data: {
+                                                                                                                   num:num
+                                                                                                               },
+                                                                                                               success: function(data) {
+                                                                                                                   var str = "";
+                                                                                                                   for(var i = 0, l = data.length; i < l; i++) {
+                                                                                                                      str += "<tr><td>";
+                                                                                                                      str += data[i].name;
+                                                                                                                      str += "</td></tr>"
+                                                                                                                   }
+                                                                                                                   $("#name").html(str);
+                                                                                                               },
+                                                                                                               error: function() {
+                                                                                                                   alert('查找失败');
+                                                                                                               }
+                                                                                                           });
+                                                       }
+                                                       else{
+                                                        alert('输入非数字');
+                                                       }
+                                                     }
+                                                     else{
+                                                      alert('输入为空');
+                                                     }
+             });
+    </script>
+
+</body>
+</html>
